@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   def subscribe_to_mailchimp testing=false
     return true if (Rails.env.test? && !testing)
-    list_id = '918a90bf34'
+    list_id = ENV["MAILCHIMP_LIST_ID"]
 
     response = Rails.configuration.mailchimp.lists.subscribe({
       id: list_id,
