@@ -82,5 +82,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise linking for Heroku
-  config.action_mailer.default_url_options = { :host => 'mailchimp-api-example.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'mailchimp-api-example.herokuapp.com' }
 end
