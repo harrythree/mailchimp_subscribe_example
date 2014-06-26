@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MailchimpSubscribeExample</title>
+  <title>Mailchimp API</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="user_nav">
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you?
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "MailChimp API", root_path, :class => "navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <%= current_user.email %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-danger navbar-btn" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, :class => "btn btn-default navbar-btn" %>
+            <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-success navbar-btn" %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-
-<%= yield %>
-
+  <div class="container">
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+  </div>
 </body>
 </html>

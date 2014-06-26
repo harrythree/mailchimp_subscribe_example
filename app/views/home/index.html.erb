@@ -1,1 +1,15 @@
-<h1>Welcome to Harry's MailChimp API Example</h1>
+<h3>Members</h3>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Email</th>
+        <th>Subscribed Since</th>
+        <th>Member Rating</th>
+    </tr>
+    <% @members.each do |member| %>
+    <tr>
+        <td><%= member['email'] %></td>
+        <td><%= member['timestamp'] %></td>
+        <td><%= member['member_rating'] %></td>
+    </tr>
+    <% end %>
+</table>
